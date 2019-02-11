@@ -15,5 +15,7 @@ pyautogui.click(315,750) #To activate the ArbStudio Window . Super essential to 
 #    functions.setvoltage(0,i,1)
 #    time.sleep(5)
 
-functions.settriggerdelay(200,2)
-functions.setvoltage(2,-1,1)
+#functions.settriggerdelay(200,2)
+#functions.setvoltage(2,-1,1)
+
+functions.togglechannel(4)

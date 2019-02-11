@@ -55,6 +55,14 @@ def settriggerdelay(t, ch): # t to be set in !NANOSECONDS!
     pyautogui.click(190,70) # Start the next AFG run
     return
 
+def togglechannel(ch):
+    pyautogui.click(190,70) # Stop the current AFG run
+    
+    pyautogui.click(250+(ch-1)*60,70)# Toggle the channel  
+    
+    pyautogui.click(190,70) # Start the next AFG run
+    return
+
 
 def savedatacsv(scope, ch, filename):
     s=""
@@ -82,6 +90,7 @@ def savedatacsv(scope, ch, filename):
     savefile=s.join((filename,'.csv'))
     with open(savefile,'w') as file:
         writer= csv.writer(file, delimiter=',')        
+        #writer.writerow([]) #Repair this row to display the Vpre and Vcoll in the csv file too.
         for i in range(0,len(Time)):
             if i==0:
                 writer.writerow(['Time','Volts'])
