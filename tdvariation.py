@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Feb 11 14:57:51 2019
-
+Created on Wed Feb 13 10:35:47 2019
 
 @author: Sumukh Vaidya, Dept of Physics, IIT Bombay
 """
@@ -28,20 +27,15 @@ time.sleep(2)
 # SECTION 1 OVER ##################################################
 
 
-inputfile=open('./configuration/vpreconfig.txt','r')
+inputfile=open('./configuration/tdconfig.txt','r')
 x=[line.split(' ') for line in inputfile.readlines()]
 print (x[0][0])
 
 saveindex=10 #Setting up a variable to save data files. Saved files start from tek0010.csv onwards.
 savedelimiter=''
-for voltage in x[0]:
+for td in x[0]:
     #Light data
-    functions.setvoltage(float(voltage),-2,1)
+    functions.setvoltage(float(td),1)
     functions.savedatacsv(scope,1,savedelimiter.join(('./DATA/tek00', str(saveindex))))
     saveindex+= 1
-    #DARK data saving
-    functions.togglechannel(2) #Turn laser off for dark data 
-    functions.savedatacsv(scope,1,savedelimiter.join(('./DATA/tek00', str(saveindex))))
-    saveindex+=1
-    functions.togglechannel(2)#Turn laser on for light data
-    time.sleep(1)
+

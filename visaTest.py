@@ -2,20 +2,30 @@
 """
 Created on Wed Jan 30 16:49:51 2019
 
-@author: hodlab
+@author: Sumukh Vaidya, Dept of Physics, IIT Bombay
 """
-import functions
+import visa
+import time
+import numpy as np
 import pyautogui
-import time 
+from struct import unpack
+import csv
+import functions
+import string
 
+
+#functions.togglechannel(4)
+
+# SECTION 1: COMM INITIATION, DO NOT TOUCH
+#This section initiates communication with DSO, and  creates an object, [scope] that enables measurements
+resources=visa.ResourceManager() #find if DSO is connected
+if len(resources.list_resources())==0:
+    print('Connection Error: No devices Available')
+else:
+    scopename=resources.list_resources()[0]  # Name the DSO
+scope=resources.open_resource(scopename) # Create the measurement object
+time.sleep(2) #Give it time to settle
 pyautogui.click(315,750) #To activate the ArbStudio Window . Super essential to include this line
+time.sleep(2)
+# SECTION 1 OVER ##################################################
 
-#v=[0,-1,-2,-3]
-#for i in v:
-#    functions.setvoltage(0,i,1)
-#    time.sleep(5)
-
-#functions.settriggerdelay(200,2)
-#functions.setvoltage(2,-1,1)
-
-functions.togglechannel(4)
