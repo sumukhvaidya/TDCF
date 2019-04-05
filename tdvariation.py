@@ -35,7 +35,7 @@ saveindex=10 #Setting up a variable to save data files. Saved files start from t
 savedelimiter=''
 for td in x[0]:
     #Light data
-    functions.setvoltage(float(td),1)
+    functions.settriggerdelay(float(td),1)
     functions.savedatacsv(scope,1,savedelimiter.join(('./DATA/tek00', str(saveindex))))
     saveindex+= 1
 

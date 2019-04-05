@@ -1,0 +1,16 @@
+To check if Oscilloscope is connected:
+1. Open Anaconda prompt
+2. Start Python
+3. Type following codw line by line:
+	import visa
+	resources = visa.ResourceManager('@py')	
+	resources.list_resources()
+If you see output as :
+	('TCPIP::0.0.0.0::inst0::INSTR',)
+You're connnected properly.
+
+
+
+
+pyVISA Installation Check:
+	python -m visa info
