@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Feb 13 10:35:47 2019
-
 @author: Sumukh Vaidya, Dept of Physics, IIT Bombay
 """
 import visa
@@ -26,13 +25,23 @@ pyautogui.click(315,750) #To activate the ArbStudio Window . Super essential to 
 time.sleep(2)
 # SECTION 1 OVER ##################################################
 
-
+#Section 2: Data acquisition: Data wil be saved as follows:####################################################
+# tek0010.csv: Dark data file, data files for light data acquisition will be tek0011.csv onwards.
 inputfile=open('./configuration/tdconfig.txt','r')
 x=[line.split(' ') for line in inputfile.readlines()]
 print (x[0][0])
 
 saveindex=10 #Setting up a variable to save data files. Saved files start from tek0010.csv onwards.
 savedelimiter=''
+
+#Dark data acquisition before time variation###################################################
+functions.settriggerdelay(float(x[0][0]),1)#Set delay as first entry of the time vector
+functions.togglechannel(2) #Turn laser off for dark data acquisition
+functions.savedatacsv(scope,1,savedelimiter.join(('./DATA/tek00', str(saveindex))))
+saveindex+=1
+functions.togglechannel(2)#Turn the laser back on
+
+#Data acquisition in light by time variation#####################################################
 for td in x[0]:
     #Light data
     functions.settriggerdelay(float(td),1)
